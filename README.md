@@ -19,7 +19,7 @@ Built as part of an Elixir Full-Stack Challenge.
 ## Stack
 
 - **Elixir / OTP**
-- **Phoenix 1.8.0-rc** with LiveView
+- **Phoenix 1.8.3** with LiveView
 - **DaisyUI** (via Phoenix 1.8 integration)
 - No database — all state in the LiveView socket
 
