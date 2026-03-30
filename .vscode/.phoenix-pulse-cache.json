@@ -1,0 +1,799 @@
+{
+  "version": "1.0.0",
+  "timestamp": 1774875188709,
+  "workspaceRoot": "/Users/divij/projects/nasa_fuel_calculator",
+  "registries": {
+    "components": {
+      "components": [
+        [
+          "__phoenix_builtins__",
+          [
+            {
+              "name": "link",
+              "moduleName": "Phoenix.Component",
+              "filePath": "/Users/divij/.vscode/extensions/onsever.phoenix-pulse-1.3.0/node_modules/@phoenix-pulse/language-server/resources/phoenix_component_builtins.ex",
+              "line": 1,
+              "doc": "Phoenix.Component.link/1 – Generates an anchor tag that supports LiveView-aware navigation.",
+              "attributes": [
+                {
+                  "name": "navigate",
+                  "type": "string",
+                  "required": false,
+                  "doc": "Use VerifiedRoutes: `navigate={~p\"/path\"}`"
+                },
+                {
+                  "name": "patch",
+                  "type": "string",
+                  "required": false,
+                  "doc": "Use VerifiedRoutes: `patch={~p\"/path\"}`"
+                },
+                {
+                  "name": "href",
+                  "type": "string",
+                  "required": false,
+                  "doc": "External/legacy target. Prefer `navigate`/`patch` with VerifiedRoutes."
+                },
+                {
+                  "name": "method",
+                  "type": "string",
+                  "required": false
+                },
+                {
+                  "name": "class",
+                  "type": "string",
+                  "required": false
+                },
+                {
+                  "name": "replace",
+                  "type": "boolean",
+                  "required": false
+                }
+              ],
+              "slots": [
+                {
+                  "name": "inner_block",
+                  "required": true,
+                  "attributes": []
+                }
+              ]
+            },
+            {
+              "name": "live_patch",
+              "moduleName": "Phoenix.Component",
+              "filePath": "/Users/divij/.vscode/extensions/onsever.phoenix-pulse-1.3.0/node_modules/@phoenix-pulse/language-server/resources/phoenix_component_builtins.ex",
+              "line": 1,
+              "doc": "Phoenix.Component.live_patch/1 – Generates a patch navigation link within the same LiveView.",
+              "attributes": [
+                {
+                  "name": "patch",
+                  "type": "string",
+                  "required": true,
+                  "doc": "Use VerifiedRoutes: `patch={~p\"/path\"}`"
+                },
+                {
+                  "name": "class",
+                  "type": "string",
+                  "required": false
+                },
+                {
+                  "name": "replace",
+                  "type": "boolean",
+                  "required": false
+                }
+              ],
+              "slots": [
+                {
+                  "name": "inner_block",
+                  "required": true,
+                  "attributes": []
+                }
+              ]
+            },
+            {
+              "name": "live_redirect",
+              "moduleName": "Phoenix.Component",
+              "filePath": "/Users/divij/.vscode/extensions/onsever.phoenix-pulse-1.3.0/node_modules/@phoenix-pulse/language-server/resources/phoenix_component_builtins.ex",
+              "line": 1,
+              "doc": "Phoenix.Component.live_redirect/1 – Generates a redirect navigation link to another LiveView or controller.",
+              "attributes": [
+                {
+                  "name": "navigate",
+                  "type": "string",
+                  "required": true,
+                  "doc": "Use VerifiedRoutes: `navigate={~p\"/path\"}`"
+                },
+                {
+                  "name": "class",
+                  "type": "string",
+                  "required": false
+                },
+                {
+                  "name": "replace",
+                  "type": "boolean",
+                  "required": false
+                }
+              ],
+              "slots": [
+                {
+                  "name": "inner_block",
+                  "required": true,
+                  "attributes": []
+                }
+              ]
+            },
+            {
+              "name": "live_component",
+              "moduleName": "Phoenix.Component",
+              "filePath": "/Users/divij/.vscode/extensions/onsever.phoenix-pulse-1.3.0/node_modules/@phoenix-pulse/language-server/resources/phoenix_component_builtins.ex",
+              "line": 1,
+              "doc": "Phoenix.Component.live_component/1 – Embeds a stateful LiveComponent from HEEx.",
+              "attributes": [
+                {
+                  "name": "module",
+                  "type": "module",
+                  "required": true,
+                  "doc": "LiveComponent module (e.g., `module={MyAppWeb.ModalComponent}`)."
+                },
+                {
+                  "name": "id",
+                  "type": "string",
+                  "required": true
+                },
+                {
+                  "name": ":for",
+                  "type": "any",
+                  "required": false
+                },
+                {
+                  "name": ":let",
+                  "type": "any",
+                  "required": false
+                }
+              ],
+              "slots": [
+                {
+                  "name": "inner_block",
+                  "required": false,
+                  "attributes": []
+                }
+              ]
+            },
+            {
+              "name": "form",
+              "moduleName": "Phoenix.Component",
+              "filePath": "/Users/divij/.vscode/extensions/onsever.phoenix-pulse-1.3.0/node_modules/@phoenix-pulse/language-server/resources/phoenix_component_builtins.ex",
+              "line": 1,
+              "doc": "Phoenix.Component.form/1 – Renders a HEEx form with support for :let assigns and action attributes.",
+              "attributes": [
+                {
+                  "name": "for",
+                  "type": "any",
+                  "required": true
+                },
+                {
+                  "name": "as",
+                  "type": "string",
+                  "required": false
+                },
+                {
+                  "name": "id",
+                  "type": "string",
+                  "required": false
+                },
+                {
+                  "name": "action",
+                  "type": "string",
+                  "required": false
+                },
+                {
+                  "name": "method",
+                  "type": "string",
+                  "required": false
+                },
+                {
+                  "name": "phx-submit",
+                  "type": "string",
+                  "required": false
+                },
+                {
+                  "name": "phx-change",
+                  "type": "string",
+                  "required": false
+                },
+                {
+                  "name": ":let",
+                  "type": "any",
+                  "required": false
+                }
+              ],
+              "slots": [
+                {
+                  "name": "inner_block",
+                  "required": true,
+                  "attributes": []
+                },
+                {
+                  "name": "actions",
+                  "required": false,
+                  "attributes": []
+                }
+              ]
+            },
+            {
+              "name": "inputs_for",
+              "moduleName": "Phoenix.Component",
+              "filePath": "/Users/divij/.vscode/extensions/onsever.phoenix-pulse-1.3.0/node_modules/@phoenix-pulse/language-server/resources/phoenix_component_builtins.ex",
+              "line": 1,
+              "doc": "Phoenix.Component.inputs_for/1 – Iterates nested inputs for associations or embeds within a parent form.",
+              "attributes": [
+                {
+                  "name": "field",
+                  "type": "any",
+                  "required": true,
+                  "doc": "Form field or association (e.g., `field={f[:addresses]}`)."
+                },
+                {
+                  "name": ":let",
+                  "type": "any",
+                  "required": true,
+                  "doc": "Binding for the nested form (e.g., `:let={address_form}`)."
+                },
+                {
+                  "name": "for",
+                  "type": "any",
+                  "required": false,
+                  "doc": "Explicit changeset/source for the nested inputs."
+                }
+              ],
+              "slots": [
+                {
+                  "name": "inner_block",
+                  "required": true,
+                  "attributes": []
+                }
+              ]
+            }
+          ]
+        ],
+        [
+          "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/components/core_components.ex",
+          [
+            {
+              "name": "icon",
+              "moduleName": "NasaFuelCalculatorWeb.CoreComponents",
+              "filePath": "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/components/core_components.ex",
+              "line": 442,
+              "attributes": [
+                {
+                  "name": "class",
+                  "type": "any",
+                  "required": false,
+                  "default": "\"size-4\"",
+                  "rawType": "any"
+                },
+                {
+                  "name": "name",
+                  "type": "string",
+                  "required": true,
+                  "rawType": "string"
+                }
+              ],
+              "slots": []
+            },
+            {
+              "name": "list",
+              "moduleName": "NasaFuelCalculatorWeb.CoreComponents",
+              "filePath": "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/components/core_components.ex",
+              "line": 408,
+              "attributes": [],
+              "slots": [
+                {
+                  "name": "item",
+                  "required": true,
+                  "attributes": [
+                    {
+                      "default": null,
+                      "line": 405,
+                      "name": "title",
+                      "type": "string",
+                      "values": null,
+                      "doc": null,
+                      "required": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "table",
+              "moduleName": "NasaFuelCalculatorWeb.CoreComponents",
+              "filePath": "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/components/core_components.ex",
+              "line": 356,
+              "attributes": [
+                {
+                  "name": "row_item",
+                  "type": "any",
+                  "required": false,
+                  "default": "{:&, [line: 347, column: 14], [{:/, [line: 347, column: 32], [{{:., [line: 347, column: 23], [{:__aliases__, [last: [line: 347, column: 15], line: 347, column: 15], [:Function]}, :identity]}, [no_parens: true, line: 347, column: 24], []}, 1]}]}",
+                  "doc": "the function for mapping each row before calling the :col and :action slots",
+                  "rawType": "any"
+                },
+                {
+                  "name": "row_click",
+                  "type": "any",
+                  "required": false,
+                  "default": "nil",
+                  "doc": "the function for handling phx-click on each row",
+                  "rawType": "any"
+                },
+                {
+                  "name": "row_id",
+                  "type": "any",
+                  "required": false,
+                  "default": "nil",
+                  "doc": "the function for generating the row id",
+                  "rawType": "any"
+                },
+                {
+                  "name": "rows",
+                  "type": "list",
+                  "required": true,
+                  "rawType": "list"
+                },
+                {
+                  "name": "id",
+                  "type": "string",
+                  "required": true,
+                  "rawType": "string"
+                }
+              ],
+              "slots": [
+                {
+                  "name": "action",
+                  "required": false,
+                  "doc": "the slot for showing user actions in the last table column",
+                  "attributes": []
+                },
+                {
+                  "name": "col",
+                  "required": true,
+                  "attributes": [
+                    {
+                      "default": null,
+                      "line": 351,
+                      "name": "label",
+                      "type": "string",
+                      "values": null,
+                      "doc": null,
+                      "required": false
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "header",
+              "moduleName": "NasaFuelCalculatorWeb.CoreComponents",
+              "filePath": "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/components/core_components.ex",
+              "line": 315,
+              "attributes": [],
+              "slots": [
+                {
+                  "name": "actions",
+                  "required": false,
+                  "attributes": []
+                },
+                {
+                  "name": "subtitle",
+                  "required": false,
+                  "attributes": []
+                },
+                {
+                  "name": "inner_block",
+                  "required": true,
+                  "attributes": []
+                }
+              ]
+            },
+            {
+              "name": "input",
+              "moduleName": "NasaFuelCalculatorWeb.CoreComponents",
+              "filePath": "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/components/core_components.ex",
+              "line": 184,
+              "attributes": [
+                {
+                  "name": "rest",
+                  "type": "global",
+                  "required": false,
+                  "rawType": "global"
+                },
+                {
+                  "name": "error_class",
+                  "type": "any",
+                  "required": false,
+                  "default": "nil",
+                  "doc": "the input error class to use over defaults",
+                  "rawType": "any"
+                },
+                {
+                  "name": "class",
+                  "type": "any",
+                  "required": false,
+                  "default": "nil",
+                  "doc": "the input class to use over defaults",
+                  "rawType": "any"
+                },
+                {
+                  "name": "multiple",
+                  "type": "boolean",
+                  "required": false,
+                  "default": "false",
+                  "doc": "the multiple flag for select inputs",
+                  "rawType": "boolean"
+                },
+                {
+                  "name": "options",
+                  "type": "list",
+                  "required": false,
+                  "doc": "the options to pass to Phoenix.HTML.Form.options_for_select/2",
+                  "rawType": "list"
+                },
+                {
+                  "name": "prompt",
+                  "type": "string",
+                  "required": false,
+                  "default": "nil",
+                  "doc": "the prompt for select inputs",
+                  "rawType": "string"
+                },
+                {
+                  "name": "checked",
+                  "type": "boolean",
+                  "required": false,
+                  "doc": "the checked flag for checkbox inputs",
+                  "rawType": "boolean"
+                },
+                {
+                  "name": "errors",
+                  "type": "list",
+                  "required": false,
+                  "default": "[]",
+                  "rawType": "list"
+                },
+                {
+                  "name": "field",
+                  "type": "{:__aliases__, [last: [line: 169, column: 29], line: 169, column: 16], [:Phoenix, :HTML, :FormField]}",
+                  "required": false,
+                  "doc": "a form field struct retrieved from the form, for example: @form[:email]",
+                  "rawType": "{:__aliases__, [last: [line: 169, column: 29], line: 169, column: 16], [:Phoenix, :HTML, :FormField]}"
+                },
+                {
+                  "name": "type",
+                  "type": "string",
+                  "required": false,
+                  "default": "\"text\"",
+                  "rawType": "string"
+                },
+                {
+                  "name": "value",
+                  "type": "any",
+                  "required": false,
+                  "rawType": "any"
+                },
+                {
+                  "name": "label",
+                  "type": "string",
+                  "required": false,
+                  "default": "nil",
+                  "rawType": "string"
+                },
+                {
+                  "name": "name",
+                  "type": "any",
+                  "required": false,
+                  "rawType": "any"
+                },
+                {
+                  "name": "id",
+                  "type": "any",
+                  "required": false,
+                  "default": "nil",
+                  "rawType": "any"
+                }
+              ],
+              "slots": []
+            },
+            {
+              "name": "button",
+              "moduleName": "NasaFuelCalculatorWeb.CoreComponents",
+              "filePath": "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/components/core_components.ex",
+              "line": 96,
+              "attributes": [
+                {
+                  "name": "variant",
+                  "type": "string",
+                  "required": false,
+                  "rawType": "string"
+                },
+                {
+                  "name": "class",
+                  "type": "any",
+                  "required": false,
+                  "rawType": "any"
+                },
+                {
+                  "name": "rest",
+                  "type": "global",
+                  "required": false,
+                  "rawType": "global"
+                }
+              ],
+              "slots": [
+                {
+                  "name": "inner_block",
+                  "required": true,
+                  "attributes": []
+                }
+              ]
+            },
+            {
+              "name": "flash",
+              "moduleName": "NasaFuelCalculatorWeb.CoreComponents",
+              "filePath": "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/components/core_components.ex",
+              "line": 50,
+              "attributes": [
+                {
+                  "name": "rest",
+                  "type": "global",
+                  "required": false,
+                  "doc": "the arbitrary HTML attributes to add to the flash container",
+                  "rawType": "global"
+                },
+                {
+                  "name": "kind",
+                  "type": "atom",
+                  "required": false,
+                  "values": [
+                    "info",
+                    "error"
+                  ],
+                  "doc": "used for styling and flash lookup",
+                  "rawType": "atom"
+                },
+                {
+                  "name": "title",
+                  "type": "string",
+                  "required": false,
+                  "default": "nil",
+                  "rawType": "string"
+                },
+                {
+                  "name": "flash",
+                  "type": "map",
+                  "required": false,
+                  "default": "{:%{}, [closing: [line: 43, column: 33], line: 43, column: 31], []}",
+                  "doc": "the map of flash messages to display",
+                  "rawType": "map"
+                },
+                {
+                  "name": "id",
+                  "type": "string",
+                  "required": false,
+                  "doc": "the optional id of flash container",
+                  "rawType": "string"
+                }
+              ],
+              "slots": [
+                {
+                  "name": "inner_block",
+                  "required": false,
+                  "doc": "the optional inner block that renders the flash message",
+                  "attributes": []
+                }
+              ]
+            }
+          ]
+        ],
+        [
+          "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/components/layouts.ex",
+          [
+            {
+              "name": "theme_toggle",
+              "moduleName": "NasaFuelCalculatorWeb.Layouts",
+              "filePath": "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/components/layouts.ex",
+              "line": 123,
+              "attributes": [],
+              "slots": []
+            },
+            {
+              "name": "flash_group",
+              "moduleName": "NasaFuelCalculatorWeb.Layouts",
+              "filePath": "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/components/layouts.ex",
+              "line": 85,
+              "attributes": [
+                {
+                  "name": "id",
+                  "type": "string",
+                  "required": false,
+                  "default": "\"flash-group\"",
+                  "doc": "the optional id of flash container",
+                  "rawType": "string"
+                },
+                {
+                  "name": "flash",
+                  "type": "map",
+                  "required": true,
+                  "doc": "the map of flash messages",
+                  "rawType": "map"
+                }
+              ],
+              "slots": []
+            },
+            {
+              "name": "app",
+              "moduleName": "NasaFuelCalculatorWeb.Layouts",
+              "filePath": "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/components/layouts.ex",
+              "line": 36,
+              "attributes": [
+                {
+                  "name": "current_scope",
+                  "type": "map",
+                  "required": false,
+                  "default": "nil",
+                  "doc": "the current [scope](https://hexdocs.pm/phoenix/scopes.html)",
+                  "rawType": "map"
+                },
+                {
+                  "name": "flash",
+                  "type": "map",
+                  "required": true,
+                  "doc": "the map of flash messages",
+                  "rawType": "map"
+                }
+              ],
+              "slots": [
+                {
+                  "name": "inner_block",
+                  "required": true,
+                  "attributes": []
+                }
+              ]
+            }
+          ]
+        ],
+        [
+          "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/controllers/error_html.ex",
+          []
+        ],
+        [
+          "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/controllers/page_html.ex",
+          []
+        ]
+      ],
+      "fileHashes": {
+        "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/components/core_components.ex": "3ed470b0f92f4322301f3f24726997832acc4e4f",
+        "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/components/layouts.ex": "b6d30ba61e5df6aa26618a2759887afd64af752e",
+        "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/controllers/error_html.ex": "5c61916a7a40c1ca60bd7fb0d0adf3f161377e2c",
+        "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/controllers/page_html.ex": "8a51fbdddc4d3d904ca866689bd627b3ed91588e"
+      },
+      "workspaceRoot": "/Users/divij/projects/nasa_fuel_calculator"
+    },
+    "schemas": {
+      "schemas": [],
+      "schemasByFile": [],
+      "fileHashes": {},
+      "workspaceRoot": "/Users/divij/projects/nasa_fuel_calculator"
+    },
+    "events": {
+      "events": [],
+      "fileHashes": {},
+      "workspaceRoot": "/Users/divij/projects/nasa_fuel_calculator"
+    },
+    "routes": {
+      "routes": [
+        {
+          "path": "/",
+          "verb": "GET",
+          "filePath": "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/router.ex",
+          "line": 20,
+          "helperBase": "root",
+          "params": [],
+          "isResource": false,
+          "controller": "PageController",
+          "action": "home",
+          "scopePath": "/"
+        }
+      ],
+      "fileHashes": {
+        "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/router.ex": "81169023acfe05307ac012210f81a284ff619b9e"
+      },
+      "workspaceRoot": "/Users/divij/projects/nasa_fuel_calculator"
+    },
+    "controllers": {
+      "rendersByFile": [
+        [
+          "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/controllers/page_controller.ex",
+          [
+            {
+              "controllerModule": "NasaFuelCalculatorWeb.PageController",
+              "controllerFile": "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/controllers/page_controller.ex",
+              "action": "home",
+              "templateName": "home",
+              "assigns": [],
+              "assignsWithTypes": [],
+              "line": 5,
+              "templatePath": "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/controllers/page_html/home.html.heex"
+            }
+          ]
+        ]
+      ],
+      "templateSummaries": [
+        [
+          "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/controllers/page_html/home.html.heex",
+          {
+            "templatePath": "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/controllers/page_html/home.html.heex",
+            "assignSources": {},
+            "controllers": [
+              {
+                "controllerModule": "NasaFuelCalculatorWeb.PageController",
+                "controllerFile": "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/controllers/page_controller.ex",
+                "action": "home",
+                "templateName": "home",
+                "assigns": [],
+                "assignsWithTypes": [],
+                "line": 5,
+                "templatePath": "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/controllers/page_html/home.html.heex"
+              }
+            ]
+          }
+        ]
+      ],
+      "fileHashes": {
+        "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/controllers/page_controller.ex": "0e697c1615e72c2589efd8827141b5cff2b12e89"
+      },
+      "workspaceRoot": "/Users/divij/projects/nasa_fuel_calculator"
+    },
+    "templates": {
+      "templatesByModule": [
+        [
+          "NasaFuelCalculatorWeb.PageHTML",
+          [
+            {
+              "moduleName": "NasaFuelCalculatorWeb.PageHTML",
+              "name": "home",
+              "format": "html",
+              "filePath": "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/controllers/page_html/home.html.heex"
+            }
+          ]
+        ]
+      ],
+      "templatesByPath": [
+        [
+          "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/controllers/page_html/home.html.heex",
+          {
+            "moduleName": "NasaFuelCalculatorWeb.PageHTML",
+            "name": "home",
+            "format": "html",
+            "filePath": "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/controllers/page_html/home.html.heex"
+          }
+        ]
+      ],
+      "moduleByFile": [
+        [
+          "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/controllers/page_html.ex",
+          "NasaFuelCalculatorWeb.PageHTML"
+        ]
+      ],
+      "fileHashes": {
+        "/Users/divij/projects/nasa_fuel_calculator/lib/nasa_fuel_calculator_web/controllers/page_html.ex": "8a51fbdddc4d3d904ca866689bd627b3ed91588e"
+      },
+      "workspaceRoot": "/Users/divij/projects/nasa_fuel_calculator"
+    },
+    "liveview": {
+      "liveViews": [],
+      "fileHashes": {},
+      "workspaceRoot": "/Users/divij/projects/nasa_fuel_calculator"
+    }
+  },
+  "fileHashes": {}
+}
