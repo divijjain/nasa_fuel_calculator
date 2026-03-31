@@ -24,6 +24,7 @@ defmodule NasaFuelCalculator.Fuel do
       current_mass + total_fuel_for_step(current_mass, action, planet)
     end)
     |> Kernel.-(mass)
+    |> trunc()
   end
 
   @spec total_fuel_for_step(number(), step_action(), planet()) :: non_neg_integer()

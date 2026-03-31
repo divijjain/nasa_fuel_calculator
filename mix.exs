@@ -63,6 +63,8 @@ defmodule NasaFuelCalculator.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"},
+      {:ecto, "~> 3.12"},
+      {:phoenix_ecto, "~> 4.6"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false}
     ]
@@ -84,7 +86,14 @@ defmodule NasaFuelCalculator.MixProject do
         "esbuild nasa_fuel_calculator --minify",
         "phx.digest"
       ],
-      precommit: ["compile --warnings-as-errors", "deps.unlock --unused", "format", "credo --strict", "dialyzer", "test"]
+      precommit: [
+        "compile --warnings-as-errors",
+        "deps.unlock --unused",
+        "format",
+        "credo --strict",
+        "dialyzer",
+        "test"
+      ]
     ]
   end
 end
