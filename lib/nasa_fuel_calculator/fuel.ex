@@ -39,16 +39,13 @@ defmodule NasaFuelCalculator.Fuel do
     end
   end
 
-  @spec step_fuel(step_action(), number(), float()) :: integer()
   defp step_fuel(:launch, mass, gravity), do: fuel_for_launch(mass, gravity)
   defp step_fuel(:land, mass, gravity), do: fuel_for_landing(mass, gravity)
 
-  @spec fuel_for_launch(number(), float()) :: integer()
   defp fuel_for_launch(mass, gravity) do
     trunc(mass * gravity * 0.042 - 33)
   end
 
-  @spec fuel_for_landing(number(), float()) :: integer()
   defp fuel_for_landing(mass, gravity) do
     trunc(mass * gravity * 0.033 - 42)
   end
