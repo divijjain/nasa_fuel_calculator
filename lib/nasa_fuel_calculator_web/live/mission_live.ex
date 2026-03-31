@@ -277,13 +277,13 @@ defmodule NasaFuelCalculatorWeb.MissionLive do
 
   defp calculate(mass, steps) do
     path = Enum.map(steps, &{&1.action, &1.planet})
-    total = Mission.calculate_path(mass, path)
+    {:ok, total} = Mission.calculate_path(mass, path)
 
     breakdown =
       steps
       |> Enum.reverse()
       |> Enum.reduce({mass, []}, fn step, {current_mass, acc} ->
-        fuel = Mission.total_fuel_for_step(current_mass, step.action, step.planet)
+        {:ok, fuel} = Mission.total_fuel_for_step(current_mass, step.action, step.planet)
         {current_mass + fuel, [{step, fuel} | acc]}
       end)
       |> elem(1)
