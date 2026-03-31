@@ -9,15 +9,7 @@ defmodule NasaFuelCalculatorWeb.MissionLive do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok,
-     assign(socket,
-       page_title: "NASA Fuel Calculator",
-       form: to_form(changeset(%{}), as: :mission),
-       parsed_mass: nil,
-       steps: [new_step(:launch, :earth)],
-       result: nil,
-       breakdown: []
-     )}
+    {:ok, assign(socket, initial_assigns())}
   end
 
   @impl true
@@ -25,18 +17,16 @@ defmodule NasaFuelCalculatorWeb.MissionLive do
     cs = changeset(params)
     parsed_mass = if cs.valid?, do: get_field(cs, :mass), else: nil
 
-    socket =
-      socket
-      |> assign(form: to_form(cs, action: :validate, as: :mission), parsed_mass: parsed_mass)
-      |> assign_result(socket.assigns.steps)
-
-    {:noreply, socket}
+    {:noreply,
+     socket
+     |> assign(form: to_form(cs, action: :validate, as: :mission), parsed_mass: parsed_mass)
+     |> assign_steps(socket.assigns.steps)}
   end
 
   def handle_event("add-step", _params, socket) do
-    %{steps: steps, parsed_mass: parsed_mass} = socket.assigns
-    last_action = steps |> List.last() |> Map.fetch!(:action)
-    next_action = if last_action == :launch, do: :land, else: :launch
+    %{steps: steps} = socket.assigns
+
+    next_action = steps |> List.last() |> Map.fetch!(:action) |> alternate_action()
 
     default_planet =
       if next_action == :launch do
@@ -51,25 +41,16 @@ defmodule NasaFuelCalculatorWeb.MissionLive do
         :earth
       end
 
-    steps = steps ++ [new_step(next_action, default_planet)]
-
-    {:noreply, socket |> assign(steps: steps, parsed_mass: parsed_mass) |> assign_result(steps)}
+    {:noreply, assign_steps(socket, steps ++ [new_step(next_action, default_planet)])}
   end
 
   def handle_event("reset", _params, socket) do
-    {:noreply,
-     assign(socket,
-       form: to_form(changeset(%{}), as: :mission),
-       parsed_mass: nil,
-       steps: [new_step(:launch, :earth)],
-       result: nil,
-       breakdown: []
-     )}
+    {:noreply, assign(socket, initial_assigns())}
   end
 
   def handle_event("remove-step", %{"id" => id}, socket) do
     steps = Enum.reject(socket.assigns.steps, &(to_string(&1.id) == id))
-    {:noreply, socket |> assign(steps: steps) |> assign_result(steps)}
+    {:noreply, assign_steps(socket, steps)}
   end
 
   def handle_event("update-step", %{"step_id" => step_id} = params, socket) do
@@ -83,7 +64,7 @@ defmodule NasaFuelCalculatorWeb.MissionLive do
         if to_string(step.id) == step_id, do: Map.merge(step, updates), else: step
       end)
 
-    {:noreply, socket |> assign(steps: steps) |> assign_result(steps)}
+    {:noreply, assign_steps(socket, steps)}
   end
 
   @impl true
@@ -117,36 +98,53 @@ defmodule NasaFuelCalculatorWeb.MissionLive do
               <div
                 :for={{step, index} <- Enum.with_index(@steps)}
                 id={"step-#{step.id}"}
-                class="flex items-center gap-3"
+                class="flex flex-col gap-1"
               >
-                <span class="text-sm font-medium w-5 text-right opacity-50">
-                  {index + 1}.
-                </span>
-                <form id={"step-form-#{step.id}"} phx-change="update-step" class="contents">
-                  <input type="hidden" name="step_id" value={step.id} />
-                  <select class="select select-bordered flex-1" name="action">
-                    <option value="launch" selected={step.action == :launch}>Launch</option>
-                    <option value="land" selected={step.action == :land}>Land</option>
-                  </select>
-                  <select class="select select-bordered flex-1" name="planet">
-                    <option
-                      :for={{key, label} <- Fuel.planets()}
-                      id={"#{step.id}-#{key}"}
-                      value={key}
-                      selected={step.planet == key}
+                <div class="flex items-center gap-3">
+                  <span class="text-sm font-medium w-5 text-right opacity-50">
+                    {index + 1}.
+                  </span>
+                  <form id={"step-form-#{step.id}"} phx-change="update-step" class="contents">
+                    <input type="hidden" name="step_id" value={step.id} />
+                    <select
+                      class={[
+                        "select select-bordered flex-1",
+                        @step_errors[step.id] && "select-error"
+                      ]}
+                      name="action"
                     >
-                      {label}
-                    </option>
-                  </select>
-                </form>
-                <button
-                  class="btn btn-ghost btn-sm text-error"
-                  phx-click="remove-step"
-                  phx-value-id={step.id}
-                  disabled={length(@steps) == 1}
-                >
-                  ✕
-                </button>
+                      <option value="launch" selected={step.action == :launch}>Launch</option>
+                      <option value="land" selected={step.action == :land}>Land</option>
+                    </select>
+                    <select
+                      class={[
+                        "select select-bordered flex-1",
+                        @step_errors[step.id] && "select-error"
+                      ]}
+                      name="planet"
+                    >
+                      <option
+                        :for={{key, label} <- Fuel.planets()}
+                        id={"#{step.id}-#{key}"}
+                        value={key}
+                        selected={step.planet == key}
+                      >
+                        {label}
+                      </option>
+                    </select>
+                  </form>
+                  <button
+                    class="btn btn-ghost btn-sm text-error"
+                    phx-click="remove-step"
+                    phx-value-id={step.id}
+                    disabled={length(@steps) == 1}
+                  >
+                    ✕
+                  </button>
+                </div>
+                <p :if={@step_errors[step.id]} class="text-error text-xs pl-8">
+                  {@step_errors[step.id]}
+                </p>
               </div>
             </div>
             <div class="card-actions mt-4 justify-between">
@@ -196,8 +194,8 @@ defmodule NasaFuelCalculatorWeb.MissionLive do
                     id={"breakdown-#{step.id}"}
                   >
                     <td class="opacity-50">{index + 1}</td>
-                    <td class="capitalize">{step.action}</td>
-                    <td>{step.planet |> to_string() |> String.capitalize()}</td>
+                    <td>{humanize_atom(step.action)}</td>
+                    <td>{humanize_atom(step.planet)}</td>
                     <td class="text-right font-mono">{format_number(fuel)}</td>
                   </tr>
                 </tbody>
@@ -210,20 +208,65 @@ defmodule NasaFuelCalculatorWeb.MissionLive do
     """
   end
 
-  defp new_step(action, planet) do
-    %{id: :erlang.unique_integer([:positive]), action: action, planet: planet}
+  defp initial_assigns do
+    [
+      page_title: "NASA Fuel Calculator",
+      form: to_form(changeset(%{}), as: :mission),
+      parsed_mass: nil,
+      steps: [new_step(:launch, :earth)],
+      step_errors: %{},
+      result: nil,
+      breakdown: []
+    ]
   end
 
-  defp assign_result(socket, steps) do
-    case socket.assigns.parsed_mass do
-      nil ->
+  defp assign_steps(socket, steps) do
+    step_errors = validate_steps(steps)
+    socket = assign(socket, steps: steps, step_errors: step_errors)
+
+    case {socket.assigns.parsed_mass, step_errors} do
+      {nil, _} ->
         assign(socket, result: nil, breakdown: [])
 
-      mass ->
+      {_, errors} when map_size(errors) > 0 ->
+        assign(socket, result: nil, breakdown: [])
+
+      {mass, _} ->
         {result, breakdown} = calculate(mass, steps)
         assign(socket, result: result, breakdown: breakdown)
     end
   end
+
+  defp validate_steps(steps) do
+    steps
+    |> Enum.zip([nil | steps])
+    |> Enum.reduce(%{}, fn {step, prev}, errors ->
+      cond do
+        is_nil(prev) ->
+          errors
+
+        prev.action == step.action ->
+          Map.put(errors, step.id, "Cannot have two consecutive #{step.action} steps")
+
+        step.action == :launch && prev.action == :land && prev.planet != step.planet ->
+          Map.put(
+            errors,
+            step.id,
+            "Must launch from #{humanize_atom(prev.planet)} where you last landed"
+          )
+
+        true ->
+          errors
+      end
+    end)
+  end
+
+  defp new_step(action, planet) do
+    %{id: :erlang.unique_integer([:positive]), action: action, planet: planet}
+  end
+
+  defp alternate_action(:launch), do: :land
+  defp alternate_action(:land), do: :launch
 
   defp changeset(params) do
     {%{}, @types}
@@ -247,6 +290,8 @@ defmodule NasaFuelCalculatorWeb.MissionLive do
 
     {total, breakdown}
   end
+
+  defp humanize_atom(atom), do: atom |> to_string() |> String.capitalize()
 
   defp format_number(n) do
     n

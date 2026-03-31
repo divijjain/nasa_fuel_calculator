@@ -88,8 +88,8 @@ defmodule NasaFuelCalculatorWeb do
       import NasaFuelCalculatorWeb.CoreComponents
 
       # Common modules used in templates
-      alias Phoenix.LiveView.JS
       alias NasaFuelCalculatorWeb.Layouts
+      alias Phoenix.LiveView.JS
 
       # Routes generation with the ~p sigil
       unquote(verified_routes())
