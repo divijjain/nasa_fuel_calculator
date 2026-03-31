@@ -8,8 +8,10 @@ Built as part of an Elixir Full-Stack Challenge.
 
 ## Features
 
-- Dynamic flight path builder (add/remove launch and landing steps)
+- Dynamic flight path builder (add/remove/reorder launch and landing steps)
 - Real-time fuel calculation as you type — no page reloads
+- Per-step fuel breakdown table
+- Flight path validation (no consecutive same actions, launch planet must match last landing)
 - Supports Earth, Moon, and Mars
 - Accounts for fuel mass recursively (fuel needs its own fuel)
 - Form validation with inline errors
@@ -27,12 +29,13 @@ Built as part of an Elixir Full-Stack Challenge.
 
 ## Setup
 
-**Prerequisites:** Elixir ~> 1.16, Erlang/OTP 26+
+**Prerequisites:** Elixir ~> 1.18, Erlang/OTP 27+
+
+If you use [asdf](https://github.com/asdf-vm/asdf) or [mise](https://mise.jdx.dev), the `.tool-versions` file pins the exact versions — run `asdf install` or `mise install` to install them automatically.
 
 ```bash
-git clone https://github.com/<your-username>/nasa-fuel-calculator.git
+git clone https://github.com/divijjain/nasa-fuel-calculator.git
 cd nasa-fuel-calculator
-
 mix deps.get
 mix phx.server
 ```

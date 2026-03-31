@@ -7,16 +7,10 @@ defmodule NasaFuelCalculator.Fuel do
     mars: 3.711
   }
 
-  @type planet :: :earth | :moon | :mars
-  @type step_action :: :launch | :land
-  @type step :: {step_action(), planet()}
-
-  @spec planets() :: [{planet(), String.t()}]
   def planets do
     [{:earth, "Earth"}, {:moon, "Moon"}, {:mars, "Mars"}]
   end
 
-  @spec calculate_path(number(), [step()]) :: non_neg_integer()
   def calculate_path(mass, steps) do
     steps
     |> Enum.reverse()
@@ -27,7 +21,6 @@ defmodule NasaFuelCalculator.Fuel do
     |> trunc()
   end
 
-  @spec total_fuel_for_step(number(), step_action(), planet()) :: non_neg_integer()
   def total_fuel_for_step(mass, action, planet) do
     gravity = @planets[planet]
     fuel = step_fuel(action, mass, gravity)

@@ -3,7 +3,7 @@ defmodule NasaFuelCalculatorWeb.MissionLive do
 
   import Ecto.Changeset
 
-  alias NasaFuelCalculator.Fuel
+  alias NasaFuelCalculator.Mission
 
   @types %{mass: :float}
 
@@ -124,7 +124,7 @@ defmodule NasaFuelCalculatorWeb.MissionLive do
                       name="planet"
                     >
                       <option
-                        :for={{key, label} <- Fuel.planets()}
+                        :for={{key, label} <- Mission.planets()}
                         id={"#{step.id}-#{key}"}
                         value={key}
                         selected={step.planet == key}
@@ -277,13 +277,13 @@ defmodule NasaFuelCalculatorWeb.MissionLive do
 
   defp calculate(mass, steps) do
     path = Enum.map(steps, &{&1.action, &1.planet})
-    total = Fuel.calculate_path(mass, path)
+    total = Mission.calculate_path(mass, path)
 
     breakdown =
       steps
       |> Enum.reverse()
       |> Enum.reduce({mass, []}, fn step, {current_mass, acc} ->
-        fuel = Fuel.total_fuel_for_step(current_mass, step.action, step.planet)
+        fuel = Mission.total_fuel_for_step(current_mass, step.action, step.planet)
         {current_mass + fuel, [{step, fuel} | acc]}
       end)
       |> elem(1)
