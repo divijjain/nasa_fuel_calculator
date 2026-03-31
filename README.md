@@ -4,6 +4,8 @@ An Elixir + Phoenix LiveView application that calculates the required fuel for i
 
 Built as part of an Elixir Full-Stack Challenge.
 
+![NASA Fuel Calculator](priv/static/images/sample.png)
+
 ---
 
 ## Features
